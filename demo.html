@@ -10,13 +10,23 @@
     <script>hljs.highlightAll();</script>
 
     <script type="module" defer>
-       import {HLJSEditable} from "./index.js";
+      import {HLJSEditable} from "./index.js";
 
-       new HLJSEditable(document.querySelector('code'));
+      const hljs = new HLJSEditable(document.querySelector('code'));
+
+      const lang_input = document.querySelector('input');
+      lang_input.addEventListener('change', () => {
+        hljs.changeLang( lang_input.value );
+      });
     </script>
+    <style>
+      code[contenteditable]::after {
+        content: "\200b"
+      }
+    </style>
   </head>
   <body>
-       [SELECT LANG]
+      Language : <input value="js" />
 
       <pre><code class="language-js">
       console.log("Hello World");
